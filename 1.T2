@@ -1,1 +1,30 @@
+int sensor = 2;
+int led = 3;
 
+void setup()
+{
+	Serial.begin(9600);
+	pinMode(sensor, INPUT);
+	pinMode(led, OUTPUT);
+	digitalWrite(led, LOW);
+	digitalWrite(sensor, LOW);
+	attachInterrupt(digitalPinToInterrupt(sensor), dectect, CHANGE);
+}
+
+void loop()
+{
+	Serial.println("nothing happend");
+	delay(3000);
+}
+
+void dectect()
+{
+
+
+	if (digitalRead(sensor) == HIGH) {
+		digitalWrite(led, HIGH);
+		Serial.println("someone coming");
+		delay(1000);
+	}
+
+}
