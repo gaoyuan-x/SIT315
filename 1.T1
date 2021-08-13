@@ -5,26 +5,21 @@ void setup()
 {
 	Serial.begin(9600);
 	pinMode(sensor, INPUT);
-	pinMode(led, OUTPUT);
-	digitalWrite(led, LOW);
+    pinMode(led,OUTPUT);
 	digitalWrite(sensor, LOW);
-	attachInterrupt(digitalPinToInterrupt(sensor), dectect, CHANGE);
+    digitalWrite(led,LOW);	
 }
-
 void loop()
 {
-	Serial.println("nothing happend");
-	delay(3000);
-}
-
-void dectect()
-{
-
-
-	if (digitalRead(sensor) == HIGH) {
-		digitalWrite(led, HIGH);
-		Serial.println("someone coming");
-		delay(1000);
-	}
-
+  if(digitalRead(sensor)==HIGH){
+    Serial.println("something moving");
+    digitalWrite(led,HIGH);
+    delay(1000);
+  }
+  else{
+    Serial.println("nothing happend");
+    delay(1000);
+  
+  }
+  delay(3000);
 }
