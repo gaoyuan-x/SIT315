@@ -4,27 +4,26 @@ int led = 3;
 void setup()
 {
 	Serial.begin(9600);
-	pinMode(sensor, INPUT);
-	pinMode(led, OUTPUT);
-	digitalWrite(led, LOW);
+	pinMode(sensor, INPUT);  //set up sensor pin at 2
+	pinMode(led, OUTPUT);  //set up led pin at 3
+	digitalWrite(led, LOW);  //initial the led and sensor as low
 	digitalWrite(sensor, LOW);
-	attachInterrupt(digitalPinToInterrupt(sensor), dectect, CHANGE);
+	attachInterrupt(digitalPinToInterrupt(sensor), dectect, CHANGE);  //set up interrupt function An interrupt is triggered when a change occurs
 }
 
-void loop()
-{
-	Serial.println("nothing happend");
-	delay(3000);
-}
+void loop()  //A conventional loop, normally runs this
+ {
+	 Serial.println("nothing happend");
+	 delay(3000);
+ }
 
-void dectect()
-{
-
-
-	if (digitalRead(sensor) == HIGH) {
-		digitalWrite(led, HIGH);
-		Serial.println("someone coming");
-		delay(1000);
+void dectect()   //When the value of the sensor is HIGH, something is moving,Immediately interrupt the previous loop to perform the equation, and then return to the previous loop
+{			
+ if (digitalRead(sensor) == HIGH) {
+		 digitalWrite(led, HIGH);
+		 Serial.println("someone coming");
+		 delay(1000);		
 	}
-
 }
+
+////https://github.com/gaoyuan-x/SIT315 
