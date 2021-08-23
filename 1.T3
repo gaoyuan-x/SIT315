@@ -1,0 +1,38 @@
+int sensor1 = 2;
+int led1 = 5;
+int led2 = 4;
+int sensor2 = 3;
+
+void setup()
+{
+	Serial.begin(9600);
+	pinMode(sensor1, INPUT);
+	pinMode(led1, OUTPUT);
+	pinMode(led2, OUTPUT);
+	pinMode(sensor2, INPUT);
+	attachInterrupt(digitalPinToInterrupt(sensor1), dectecter1, CHANGE);//set up interrupt function	An interrupt is triggered when a change occurs at sensor 1
+	attachInterrupt(digitalPinToInterrupt(sensor2), dectecter2, CHANGE);//set up interrupt function	An interrupt is triggered when a change occurs at sensor 2
+}
+
+void loop()
+{
+	pinMode(led1, LOW);
+	pinMode(led2, LOW);
+	Serial.println("nothing happend");
+
+	delay(2000);
+}
+void dectecter1() {//When the value of the sensor1 is HIGH, something is moving,Immediately interrupt the previous loop to perform the equation, and then return to the previous loop
+	if (digitalRead(sensor1) == HIGH) {
+		digitalWrite(led1, HIGH);
+		Serial.println("dectecter 1 has dectected something");
+		delay(5000);
+	}
+}
+void dectecter2() {//When the value of the sensor2 is HIGH, something is moving,Immediately interrupt the previous loop to perform the equation, and then return to the previous loop
+	if (digitalRead(sensor2) == HIGH) {
+		digitalWrite(led2, HIGH);
+		Serial.println("dectecter 2 has dectected something");
+		delay(5000);
+	}
+}
